@@ -12,25 +12,25 @@ import java.util.ArrayList;
  */
 public class DAO {
 
-	/**  MÛdulo de conex„o *. */
-	// Par‚metros de conexao
+	/**  M√≥dulo de conex√£o *. */
+	// Par√¢metros de conexao
 	private String driver = "com.mysql.cj.jdbc.Driver";
 	
 	/** The url. */
-	private String url = "jdbc:mysql://192.168.1.196:3306/dbagenda?useTimeZone=true&serverTimezone=UTC";
+	private String url = "jdbc:mysql://192.168.1.197:3306/dbagenda?useTimeZone=true&serverTimezone=UTC";
 	
 	/** The user. */
-	private String user = "adm";
+	private String user = "xxx";
 	
 	/** The password. */
-	private String password = "mysql123";
+	private String password = "xxxx";
 	
 	/**
 	 * Conectar.
 	 *
 	 * @return the connection
 	 */
-	//MÈtodo de conex„o
+	//M√©todo de conex√£o
 	private Connection conectar() {
 		try {
 			Class.forName(driver);
@@ -53,10 +53,10 @@ public class DAO {
 			//abrir a conexao
 			Connection con = conectar();
 			
-			//Preparar a query para execuÁ„o no banco de dados
+			//Preparar a query para execu√ß√£o no banco de dados
 			PreparedStatement pst = con.prepareStatement(create);
 			
-			//Substituir os par‚metros (?) pelo conte˙do das vari·veis JavaBeans
+			//Substituir os par√¢metros (?) pelo conte√∫do das vari√°veis JavaBeans
 			pst.setString(1, contato.getNome());
 			pst.setString(2, contato.getFone());
 			pst.setString(3, contato.getEmail());
@@ -64,7 +64,7 @@ public class DAO {
 			//Executar a query
 			pst.executeUpdate();
 			
-			//Encerrar a conex„o com o banco
+			//Encerrar a conex√£o com o banco
 			con.close();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -86,16 +86,16 @@ public class DAO {
 			//abrir a conexao
 			Connection con = conectar();
 			
-			//Preparar a query para execuÁ„o no banco de dados
+			//Preparar a query para execu√ß√£o no banco de dados
 			PreparedStatement pst = con.prepareStatement(read);
 			
 			//Executar a query
 			ResultSet rs = pst.executeQuery();
 			
-			//o laÁo abaixo ser· executado enquanto houver contatos
+			//o la√ßo abaixo ser√° executado enquanto houver contatos
 			while (rs.next()) {
 				
-				//Vari·veis de apoio que recebe os dados do banco
+				//Vari√°veis de apoio que recebe os dados do banco
 				String idcon = rs.getString(1);
 				String nome = rs.getString(2);
 				String fone = rs.getString(3);
@@ -104,7 +104,7 @@ public class DAO {
 				//popular o ArrayList
 				contatos.add(new JavaBeans(idcon, nome, fone, email));
 			}
-			//Encerrar a conex„o com o banco
+			//Encerrar a conex√£o com o banco
 			con.close();
 			
 			//retornando a lista
@@ -128,25 +128,25 @@ public class DAO {
 			//abrir a conexao
 			Connection con = conectar();
 			
-			//Preparar a query para execuÁ„o no banco de dados
+			//Preparar a query para execu√ß√£o no banco de dados
 			PreparedStatement pst = con.prepareStatement(readById);
 			
-			//Substituir os par‚metros (?) pelo conte˙do das vari·veis JavaBeans
+			//Substituir os par√¢metros (?) pelo conte√∫do das vari√°veis JavaBeans
 			pst.setString(1, contato.getIdcon());
 			
 			//Executar a query
 			ResultSet rs = pst.executeQuery();
 			
-			//o laÁo abaixo ser· executado enquanto houver contatos
+			//o la√ßo abaixo ser√° executado enquanto houver contatos
 			while (rs.next()) {
 				
-				//Vari·veis de apoio que recebe os dados do banco
+				//Vari√°veis de apoio que recebe os dados do banco
 				contato.setIdcon(rs.getString(1));
 				contato.setNome(rs.getString(2));
 				contato.setFone(rs.getString(3));
 				contato.setEmail(rs.getString(4));
 			}
-			//Encerrar a conex„o com o banco
+			//Encerrar a conex√£o com o banco
 			con.close();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -166,10 +166,10 @@ public class DAO {
 			//abrir a conexao
 			Connection con = conectar();
 			
-			//Preparar a query para execuÁ„o no banco de dados
+			//Preparar a query para execu√ß√£o no banco de dados
 			PreparedStatement pst = con.prepareStatement(update);
 			
-			//Substituir os par‚metros (?) pelo conte˙do das vari·veis JavaBeans
+			//Substituir os par√¢metros (?) pelo conte√∫do das vari√°veis JavaBeans
 			pst.setString(1, contato.getNome());
 			pst.setString(2, contato.getFone());
 			pst.setString(3, contato.getEmail());
@@ -178,7 +178,7 @@ public class DAO {
 			//Executar a query
 			pst.executeUpdate();
 			
-			//Encerrar a conex„o com o banco
+			//Encerrar a conex√£o com o banco
 			con.close();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -197,16 +197,16 @@ public class DAO {
 			//abrir a conexao
 			Connection con = conectar();
 			
-			//Preparar a query para execuÁ„o no banco de dados
+			//Preparar a query para execu√ß√£o no banco de dados
 			PreparedStatement pst = con.prepareStatement(delete);
 			
-			//Substituir os par‚metros (?) pelo conte˙do das vari·veis JavaBeans
+			//Substituir os par√¢metros (?) pelo conte√∫do das vari√°veis JavaBeans
 			pst.setString(1, contato.getIdcon());
 			
 			//Executar a query
 			pst.executeUpdate();
 			
-			//Encerrar a conex„o com o banco
+			//Encerrar a conex√£o com o banco
 			con.close();
 		} catch (Exception e) {
 			System.out.println(e);
